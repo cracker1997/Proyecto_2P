@@ -1,0 +1,48 @@
+/* autor: Ronny Ordoñez */
+
+/* Selector universal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Selector de tipo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Selector de ID (por ejemplo, si luego agregas uno) */
+#contenido-principal {
+    padding: 20px;
+}
+
+/* Selector de clase */
+.bienvenida {
+    margin: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Combinador descendiente */
+header nav ul li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Pseudo-clase */
+nav a:hover {
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+/* Pseudo-elemento */
+h1::after {
+    content: " 👶";
+}
+
+/* Selector de atributo (enlace externo por ejemplo) */
+a[target="_blank"] {
+    color: red;
+}
