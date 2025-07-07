@@ -9,12 +9,13 @@ class NinoDTO {
     private $genero;
     private $nivel;
     private $tutor;
+    private $alergias;
+    private $detalle_alergias;
     private $fecha_registro;
     private $usuario_creacion;
     private $fecha_actualizacion;
     private $usuario_actualizacion;
 
-    // Getters y setters
     public function getId() { return $this->id; }
     public function setId($id) { $this->id = $id; }
 
@@ -35,6 +36,12 @@ class NinoDTO {
 
     public function getTutor() { return $this->tutor; }
     public function setTutor($tutor) { $this->tutor = $tutor; }
+
+    public function getAlergias() { return $this->alergias; }
+    public function setAlergias($alergias) { $this->alergias = $alergias; }
+
+    public function getDetalleAlergias() { return $this->detalle_alergias; }
+    public function setDetalleAlergias($detalle) { $this->detalle_alergias = $detalle; }
 
     public function getFechaRegistro() { return $this->fecha_registro; }
     public function setFechaRegistro($fecha_registro) { $this->fecha_registro = $fecha_registro; }

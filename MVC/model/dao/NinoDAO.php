@@ -14,8 +14,8 @@ class NinoDAO {
 
     public static function guardar(NinoDTO $nino) {
         $conexion = Conexion::conectar();
-        $sql = "INSERT INTO ninos (nombre, apellido, fecha_nacimiento, genero, nivel, tutor, usuario_creacion)
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO ninos (nombre, apellido, fecha_nacimiento, genero, nivel, tutor, usuario_creacion, alergias, detalle_alergias)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
         return $stmt->execute([
             $nino->getNombre(),
@@ -24,7 +24,9 @@ class NinoDAO {
             $nino->getGenero(),
             $nino->getNivel(),
             $nino->getTutor(),
-            $nino->getUsuarioCreacion()
+            $nino->getUsuarioCreacion(),
+            $nino->getAlergias(),
+            $nino->getDetalleAlergias()
         ]);
     }
 
@@ -37,7 +39,7 @@ class NinoDAO {
 
     public static function actualizar(NinoDTO $nino) {
         $conexion = Conexion::conectar();
-        $sql = "UPDATE ninos SET nombre=?, apellido=?, fecha_nacimiento=?, genero=?, nivel=?, tutor=?, 
+        $sql = "UPDATE ninos SET nombre=?, apellido=?, fecha_nacimiento=?, genero=?, nivel=?, tutor=?, alergias=?, detalle_alergias=?, 
                 fecha_actualizacion=NOW(), usuario_actualizacion=? WHERE id=?";
         $stmt = $conexion->prepare($sql);
         return $stmt->execute([
@@ -47,6 +49,8 @@ class NinoDAO {
             $nino->getGenero(),
             $nino->getNivel(),
             $nino->getTutor(),
+            $nino->getAlergias(),
+            $nino->getDetalleAlergias(),
             $nino->getUsuarioActualizacion(),
             $nino->getId()
         ]);

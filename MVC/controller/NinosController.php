@@ -38,6 +38,8 @@ class NinosController {
         $nino->setGenero($_POST['genero']);
         $nino->setNivel($_POST['nivel']);
         $nino->setTutor($_POST['tutor']);
+        $nino->setAlergias(isset($_POST['alergias']) ? 1 : 0);
+        $nino->setDetalleAlergias($_POST['detalle_alergias'] ?? null);
         $nino->setUsuarioCreacion($_SESSION['usuario']['nombre']);
 
         NinoDAO::guardar($nino);
@@ -69,6 +71,8 @@ class NinosController {
         $nino->setGenero($_POST['genero']);
         $nino->setNivel($_POST['nivel']);
         $nino->setTutor($_POST['tutor']);
+        $nino->setAlergias(isset($_POST['alergias']) ? 1 : 0);
+        $nino->setDetalleAlergias($_POST['detalle_alergias'] ?? null);
         $nino->setUsuarioActualizacion($_SESSION['usuario']['nombre']);
 
         NinoDAO::actualizar($nino);
