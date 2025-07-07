@@ -61,4 +61,12 @@ class NinoDAO {
         $stmt = $conexion->prepare("DELETE FROM ninos WHERE id = ?");
         return $stmt->execute([$id]);
     }
+
+    public static function buscarPorNombre($texto) {
+    $conexion = Conexion::conectar();
+    $stmt = $conexion->prepare("SELECT * FROM ninos WHERE nombre LIKE ? OR apellido LIKE ?");
+    $like = "%$texto%";
+    $stmt->execute([$like, $like]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }

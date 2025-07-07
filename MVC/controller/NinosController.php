@@ -1,5 +1,5 @@
 <?php
-//autor: Ronny Ordoñez
+// autor: Ronny Ordoñez
 session_start();
 require_once "model/dao/NinoDAO.php";
 require_once "model/dto/NinoDTO.php";
@@ -7,14 +7,20 @@ require_once "model/dto/NinoDTO.php";
 class NinosController {
 
     public function index() {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?c=Login");
-            exit();
-        }
-
-        $lista = NinoDAO::listar();
-        require_once "view/nino/nino.list.php";
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: index.php?c=Login");
+        exit();
     }
+
+    if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
+        $texto = trim($_GET['buscar']);
+        $lista = NinoDAO::buscarPorNombre($texto);
+    } else {
+        $lista = NinoDAO::listar();
+    }
+
+    require_once "view/nino/nino.list.php";
+}
 
     public function nuevo() {
         if (!isset($_SESSION['usuario'])) {
@@ -29,6 +35,19 @@ class NinosController {
         if (!isset($_SESSION['usuario'])) {
             header("Location: index.php?c=Login");
             exit();
+        }
+
+        // Validaciones del lado del servidor
+        if (
+            empty($_POST['nombre']) || !preg_match("/^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$/", $_POST['nombre']) ||
+            empty($_POST['apellido']) || !preg_match("/^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$/", $_POST['apellido']) ||
+            empty($_POST['fecha_nacimiento']) || $_POST['fecha_nacimiento'] > date('Y-m-d') ||
+            empty($_POST['genero']) || !in_array($_POST['genero'], ['Masculino', 'Femenino']) ||
+            empty($_POST['nivel']) ||
+            empty($_POST['tutor'])
+        ) {
+            echo "<script>alert('Error: datos inválidos. Verifica el formulario.'); window.history.back();</script>";
+            return;
         }
 
         $nino = new NinoDTO();
@@ -52,7 +71,12 @@ class NinosController {
             exit();
         }
 
-        $id = $_GET['id'];
+        $id = $_GET['id'] ?? null;
+        if (!$id || !is_numeric($id)) {
+            echo "<script>alert('ID inválido.'); window.location.href='index.php?c=Ninos';</script>";
+            return;
+        }
+
         $dato = NinoDAO::buscarPorId($id);
         require_once "view/nino/nino.edit.php";
     }
@@ -61,6 +85,20 @@ class NinosController {
         if (!isset($_SESSION['usuario'])) {
             header("Location: index.php?c=Login");
             exit();
+        }
+
+        // Validaciones del lado del servidor
+        if (
+            empty($_POST['id']) || !is_numeric($_POST['id']) ||
+            empty($_POST['nombre']) || !preg_match("/^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$/", $_POST['nombre']) ||
+            empty($_POST['apellido']) || !preg_match("/^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$/", $_POST['apellido']) ||
+            empty($_POST['fecha_nacimiento']) || $_POST['fecha_nacimiento'] > date('Y-m-d') ||
+            empty($_POST['genero']) || !in_array($_POST['genero'], ['Masculino', 'Femenino']) ||
+            empty($_POST['nivel']) ||
+            empty($_POST['tutor'])
+        ) {
+            echo "<script>alert('Error: datos inválidos. Verifica el formulario.'); window.history.back();</script>";
+            return;
         }
 
         $nino = new NinoDTO();
@@ -85,7 +123,12 @@ class NinosController {
             exit();
         }
 
-        $id = $_GET['id'];
+        $id = $_GET['id'] ?? null;
+        if (!$id || !is_numeric($id)) {
+            echo "<script>alert('ID inválido.'); window.location.href='index.php?c=Ninos';</script>";
+            return;
+        }
+
         NinoDAO::eliminar($id);
         header("Location: index.php?c=Ninos");
     }
