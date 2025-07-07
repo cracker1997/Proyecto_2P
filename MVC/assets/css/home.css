@@ -1,48 +1,143 @@
 /* autor: Ronny Ordoñez */
 
-/* Selector universal */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Selector de tipo */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
 }
 
-/* Selector de ID (por ejemplo, si luego agregas uno) */
-#contenido-principal {
-    padding: 20px;
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 16px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Selector de clase */
-.bienvenida {
-    margin: 20px;
-    font-size: 18px;
-    color: #333;
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Combinador descendiente */
-header nav ul li {
-    display: inline-block;
-    margin-right: 15px;
+#nav-list {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 10px;
+  flex-wrap: wrap;
 }
 
-/* Pseudo-clase */
-nav a:hover {
-    color: #007BFF;
-    text-decoration: underline;
+.nav-item {
+  margin: 0 12px;
 }
 
-/* Pseudo-elemento */
-h1::after {
-    content: " 👶";
+.nav-item a {
+  text-decoration: none;
+  padding: 10px 16px;
+  display: block;
+  color: #333;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
-/* Selector de atributo (enlace externo por ejemplo) */
-a[target="_blank"] {
-    color: red;
+.nav-item a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Footer */
+.footer {
+  background-color: #f5f5f5;
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  border-top: 1px solid #ccc;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.redes-sociales {
+  margin-top: 10px;
+}
+
+.redes-sociales img {
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+
+.redes-sociales img:hover {
+  transform: scale(1.2);
+}
+
+.barra-navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007bff;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.nav-enlaces {
+  list-style: none;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-enlaces li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.nav-enlaces li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cerrar-sesion a {
+  color: white;
+  background-color: #0056b3;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.cerrar-sesion a:hover {
+  background-color: #004099;
 }
