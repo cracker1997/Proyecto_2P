@@ -1,4 +1,4 @@
-<!-- autor: Ronny Ordoñez -->
+<!-- autor: Ordoñez Arreaga Ronny -->
 <footer class="footer">
     <div class="footer-contenido">
         <p>&copy; 2025 Guardería Infantil. Todos los derechos reservados.</p>

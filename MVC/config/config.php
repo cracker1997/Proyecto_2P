@@ -1,5 +1,5 @@
+<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
-//autor: Ronny Ordoñez
 
 define("DB_HOST", "localhost");
 define("DB_NAME", "guarderia");

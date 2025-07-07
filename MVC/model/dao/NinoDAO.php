@@ -1,16 +1,27 @@
+<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
-//autor: Ronny Ordoñez
 
 require_once "config/conexion.php";
 require_once "model/dto/NinoDTO.php";
 
 class NinoDAO {
-    public static function listar() {
-        $conexion = Conexion::conectar();
-        $stmt = $conexion->prepare("SELECT * FROM ninos");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    public static function listarPaginado($inicio, $limite) {
+    $conexion = Conexion::conectar();
+    $stmt = $conexion->prepare("SELECT * FROM ninos LIMIT ?, ?");
+    $stmt->bindParam(1, $inicio, PDO::PARAM_INT);
+    $stmt->bindParam(2, $limite, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+public static function totalRegistros() {
+    $conexion = Conexion::conectar();
+    $stmt = $conexion->query("SELECT COUNT(*) FROM ninos");
+    return $stmt->fetchColumn();
+}
+
+
 
     public static function guardar(NinoDTO $nino) {
         $conexion = Conexion::conectar();
@@ -62,11 +73,24 @@ class NinoDAO {
         return $stmt->execute([$id]);
     }
 
-    public static function buscarPorNombre($texto) {
+    public static function buscarPorNombre($texto, $inicio, $limite) {
     $conexion = Conexion::conectar();
-    $stmt = $conexion->prepare("SELECT * FROM ninos WHERE nombre LIKE ? OR apellido LIKE ?");
+    $stmt = $conexion->prepare("SELECT * FROM ninos WHERE nombre LIKE ? OR apellido LIKE ? LIMIT ?, ?");
     $like = "%$texto%";
-    $stmt->execute([$like, $like]);
+    $stmt->bindParam(1, $like);
+    $stmt->bindParam(2, $like);
+    $stmt->bindParam(3, $inicio, PDO::PARAM_INT);
+    $stmt->bindParam(4, $limite, PDO::PARAM_INT);
+    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public static function totalBusqueda($texto) {
+    $conexion = Conexion::conectar();
+    $stmt = $conexion->prepare("SELECT COUNT(*) FROM ninos WHERE nombre LIKE ? OR apellido LIKE ?");
+    $like = "%$texto%";
+    $stmt->execute([$like, $like]);
+    return $stmt->fetchColumn();
+}
+
 }

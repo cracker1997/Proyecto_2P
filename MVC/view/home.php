@@ -1,55 +1,69 @@
-<!-- autor: Ronny Ordoñez -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Inicio - Guardería</title>
-    <link rel="stylesheet" href="assets/css/home.css">
-</head>
-<body>
-    <!-- Barra de navegación -->
-    <nav class="barra-navegacion">
-    <div class="logo">
-        <img src="assets/img/logo_guarderia.png" alt="Logo Guardería">
-    </div>
-    <ul class="nav-enlaces">
-        <?php if ($rol === 'Administrador') : ?>
-            <li><a href="index.php?c=Ninos&a=index">Niños</a></li>
-            <li><a href="index.php?c=Personal&a=index">Personal</a></li>
-            <li><a href="index.php?c=Usuario&a=index">Usuarios</a></li>
-            <li><a href="index.php?c=Inventario&a=index">Inventario</a></li>
-            <li><a href="index.php?c=Actividades&a=index">Actividades</a></li>
-        <?php elseif ($rol === 'Docente') : ?>
-            <li><a href="index.php?c=Ninos&a=index">Niños</a></li>
-            <li><a href="index.php?c=Actividades&a=index">Actividades</a></li>
-        <?php elseif ($rol === 'Inventario') : ?>
-            <li><a href="index.php?c=Inventario&a=index">Inventario</a></li>
-        <?php endif; ?>
-    </ul>
-    <div class="cerrar-sesion">
-        <a href="index.php?c=Login&a=logout">Cerrar sesión</a>
-    </div>
-</nav>
+<!-- autor: Ordoñez Arreaga Ronny -->
+<?php require_once "view/templates/navbar.php"; ?>
 
+<main class="container" style="padding: 40px 20px;">
 
-    <!-- Contenido principal -->
-    <main id="main" class="container">
-        <h1>Bienvenido, <?= $_SESSION['usuario']['nombre'] ?> 👋</h1>
-        <p>Rol: <strong><?= $rol ?></strong></p>
-        <p>Esta es la plataforma de gestión para guarderías. Usa el menú superior para navegar entre los módulos disponibles.</p>
-    </main>
+    <!-- Sección de bienvenida con imagen y nombre del usuario -->
+    <section class="seccion-principal" style="background-color: #eaf4fc; padding: 40px 30px; border-radius: 10px; margin-bottom: 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center;">
+        <img src="assets/img/guarderia-icono.png" alt="Guardería" style="width: 80px; height: 80px; margin-bottom: 15px;">
+        <h2 style="color: #007bff; margin-bottom: 15px;">
+            ¡Bienvenido, <?= $_SESSION['usuario']['nombre'] ?? 'Usuario' ?>!
+        </h2>
+        <p style="font-size: 18px; max-width: 700px; margin: 0 auto;">
+            Este sistema te permite gestionar eficientemente todos los aspectos relacionados con la guardería:
+            registro de niños, personal, actividades, inventario y más.
+        </p>
+    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-contenido">
-            <p>&copy; 2025 Guardería Infantil. Todos los derechos reservados.</p>
-            <p><a href="#">Términos y condiciones</a> | <a href="#">Política de privacidad</a></p>
-            <div class="redes-sociales">
-                <a href="https://facebook.com/"><img src="assets/img/facebook.png.webp" alt="Facebook"></a>
-                <a href="https://www.instagram.com/"><img src="assets/img/instagran.png" alt="Instagram"></a>
-                <a href="https://x.com/"><img src="assets/img/x.png" alt="Twitter"></a>
+    <!-- Sección: ¿Quiénes somos? -->
+    <section style="margin-bottom: 60px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+        <h3 style="color: #007bff;">¿Quiénes somos?</h3>
+        <p style="text-align: justify; margin-top: 10px;">
+            Somos una institución educativa dedicada al cuidado y desarrollo integral de los más pequeños.
+            Nuestro compromiso es ofrecer un entorno seguro, afectivo y estimulante para el aprendizaje
+            temprano, acompañado por un equipo humano altamente capacitado y comprometido.
+        </p>
+    </section>
+
+    <!-- Sección: Misión -->
+    <section style="margin-bottom: 60px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+        <h3 style="color: #007bff;">Misión</h3>
+        <p style="text-align: justify; margin-top: 10px;">
+            Brindar un servicio de educación inicial de calidad, con enfoque en valores y estimulación temprana,
+            que fomente el desarrollo físico, cognitivo, emocional y social de los niños, en estrecha
+            colaboración con las familias.
+        </p>
+    </section>
+
+    <!-- Sección: Visión -->
+    <section style="margin-bottom: 60px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+        <h3 style="color: #007bff;">Visión</h3>
+        <p style="text-align: justify; margin-top: 10px;">
+            Ser una guardería referente a nivel local por su excelencia educativa, innovación pedagógica
+            y atención personalizada, formando una base sólida para el futuro académico y personal
+            de nuestros estudiantes.
+        </p>
+    </section>
+
+    <!-- Sección: Horarios -->
+    <section style="margin-bottom: 40px; padding: 30px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+        <h3 style="color: #007bff; margin-bottom: 15px;">Horarios de Atención</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 16px;">
+            <div style="display: flex; justify-content: space-between;">
+                <span><strong>Lunes a Viernes:</strong></span>
+                <span>07:00 AM – 05:00 PM</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span><strong>Sábados:</strong></span>
+                <span>08:00 AM – 12:00 PM</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: #d9534f;">
+                <span><strong>Domingos y feriados:</strong></span>
+                <span>Cerrado</span>
             </div>
         </div>
-    </footer>
-</body>
-</html>
+    </section>
+
+</main>
+
+<?php require_once "view/templates/footer.php"; ?>

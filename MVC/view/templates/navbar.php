@@ -1,5 +1,5 @@
+<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
-//autor: Ronny Ordoñez
 if (!isset($_SESSION)) session_start();
 $rol = $_SESSION['usuario']['rol'];
 ?>

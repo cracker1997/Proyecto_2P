@@ -1,3 +1,4 @@
+<!-- autor: Ordoñez Arreaga Ronny -->
 <?php require_once "view/templates/navbar.php"; ?>
 <main class="container">
     <h2>Editar Niño</h2>

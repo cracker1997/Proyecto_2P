@@ -1,5 +1,5 @@
+<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
-// autor: Ronny Ordoñez
 session_start();
 require_once "model/dao/NinoDAO.php";
 require_once "model/dto/NinoDTO.php";
@@ -12,15 +12,24 @@ class NinosController {
         exit();
     }
 
+    $limite = 5;
+    $pagina = isset($_GET['pagina']) && is_numeric($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
+    $inicio = ($pagina - 1) * $limite;
+
     if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
         $texto = trim($_GET['buscar']);
-        $lista = NinoDAO::buscarPorNombre($texto);
+        $lista = NinoDAO::buscarPorNombre($texto, $inicio, $limite);
+        $total = NinoDAO::totalBusqueda($texto);
     } else {
-        $lista = NinoDAO::listar();
+        $lista = NinoDAO::listarPaginado($inicio, $limite);
+        $total = NinoDAO::totalRegistros();
     }
+
+    $totalPaginas = ceil($total / $limite);
 
     require_once "view/nino/nino.list.php";
 }
+
 
     public function nuevo() {
         if (!isset($_SESSION['usuario'])) {

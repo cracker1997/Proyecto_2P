@@ -1,3 +1,4 @@
+<!-- autor: Ordoñez Arreaga Ronny -->
 <?php require_once "view/templates/navbar.php"; ?>
 <main class="container">
     <h2>Registrar Nuevo Niño</h2>

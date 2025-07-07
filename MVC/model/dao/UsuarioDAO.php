@@ -1,5 +1,5 @@
 <?php
-//autor: Ronny Ordoñez
+//autor: 
 require_once "config/conexion.php";
 
 class UsuarioDAO {
