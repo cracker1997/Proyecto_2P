@@ -1,7 +1,7 @@
 <?php
 //autor: Ronny Ordoñez
 session_start();
-require_once "model/UsuarioDAO.php";
+require_once "model/dao/UsuarioDAO.php";
 
 class LoginController {
     public function index() {
