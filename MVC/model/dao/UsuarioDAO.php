@@ -4,13 +4,47 @@ require_once "config/conexion.php";
 
 class UsuarioDAO {
     public static function verificarCredenciales($usuario, $clave) {
-    $conexion = Conexion::conectar();
-    $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? AND clave = ?");
-    
-    // Encriptamos la clave con sha1 antes de enviarla
-    $claveEncriptada = sha1($clave);
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? AND clave = ?");
 
-    $stmt->execute([$usuario, $claveEncriptada]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+        // Encriptamos la clave con sha1 antes de enviarla
+        $claveEncriptada = sha1($clave);
+
+        $stmt->execute([$usuario, $claveEncriptada]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function listarPaginado($inicio, $limite) {
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->prepare("SELECT * FROM usuarios LIMIT ?, ?");
+        $stmt->bindParam(1, $inicio, PDO::PARAM_INT);
+        $stmt->bindParam(2, $limite, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function buscarPorNombre($texto, $inicio, $limite) {
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE nombre LIKE ? LIMIT ?, ?");
+        $like = "%$texto%";
+        $stmt->bindParam(1, $like);
+        $stmt->bindParam(2, $inicio, PDO::PARAM_INT);
+        $stmt->bindParam(3, $limite, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function totalRegistros() {
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->query("SELECT COUNT(*) FROM usuarios");
+        return $stmt->fetchColumn();
 }
+
+    public static function totalBusqueda($texto) {
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->prepare("SELECT COUNT(*) FROM usuarios WHERE nombre LIKE ?");
+        $like = "%$texto%";
+        $stmt->execute([$like]);
+        return $stmt->fetchColumn();
+    }
 }
