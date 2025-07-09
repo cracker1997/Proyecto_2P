@@ -141,4 +141,16 @@ class NinosController {
         NinoDAO::eliminar($id);
         header("Location: index.php?c=Ninos");
     }
+
+    public function buscarAjax() {
+        verificarAcceso(['administrador', 'docente']);
+
+        $nombre = $_GET['nombre'] ?? '';
+        $ninos = NinoDAO::buscarPorNombre($nombre, 0, 100); // limitamos por si hay muchos
+
+        header('Content-Type: application/json');
+        echo json_encode($ninos);
+        exit;
+}
+
 }
