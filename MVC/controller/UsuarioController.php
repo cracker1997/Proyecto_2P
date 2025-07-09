@@ -4,8 +4,8 @@ session_start();
 require_once "model/dao/UsuarioDAO.php";
 require_once "model/dto/UsuarioDTO.php";
 
-if (!isset($_SESSION['usuario'])) {
-    header("Location: index.php?c=Login");
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['rol'] != 'Administrador') {
+    header("Location: index.php?c=Home");
     exit();
 }
 
@@ -49,6 +49,17 @@ class UsuarioController {
         $usuario->fecha_creacion = date('Y-m-d H:i:s');
 
         UsuarioDAO::guardar($usuario);
+        header("Location: index.php?c=Usuario");
+    }
+
+    public function eliminar() {
+        $id = $_GET['id'] ?? null;
+        if (!$id || !is_numeric($id)) {
+            echo "<script>alert('ID inválido.'); window.location.href='index.php?c=Usuario';</script>";
+            return;
+        }
+
+        UsuarioDAO::eliminar($id);
         header("Location: index.php?c=Usuario");
     }
 }

@@ -6,4 +6,4 @@
   - [x] Crear
   - [x] Listar
   - [ ] Editar
-  - [ ] Eliminar
+  - [x] Eliminar

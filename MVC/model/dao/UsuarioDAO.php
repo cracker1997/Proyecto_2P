@@ -57,9 +57,22 @@ class UsuarioDAO {
         return $stmt->execute([
             $usuario->nombre,
             $usuario->usuario,
-            $usuario->clave,
+            sha1($usuario->clave),
             $usuario->rol,
             $usuario->fecha_creacion,
         ]);
+    }
+
+    public static function es_admin($id) {
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->prepare("SELECT rol FROM usuarios WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchColumn();
+    }
+
+    public static function eliminar($id) {
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->prepare("DELETE FROM usuarios WHERE id = ?");
+        return $stmt->execute([$id]);
     }
 }
