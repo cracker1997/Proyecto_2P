@@ -47,4 +47,19 @@ class UsuarioDAO {
         $stmt->execute([$like]);
         return $stmt->fetchColumn();
     }
+
+    public static function guardar(UsuarioDTO $usuario) {
+        $conexion = Conexion::conectar();
+        $sql = "INSERT INTO usuarios (nombre, usuario, clave, rol, fecha_creacion)
+                VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conexion->prepare($sql);
+
+        return $stmt->execute([
+            $usuario->nombre,
+            $usuario->usuario,
+            $usuario->clave,
+            $usuario->rol,
+            $usuario->fecha_creacion,
+        ]);
+    }
 }

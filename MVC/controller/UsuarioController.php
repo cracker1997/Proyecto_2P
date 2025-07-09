@@ -2,14 +2,15 @@
 <?php
 session_start();
 require_once "model/dao/UsuarioDAO.php";
+require_once "model/dto/UsuarioDTO.php";
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: index.php?c=Login");
+    exit();
+}
 
 class UsuarioController {
     public function index() {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?c=Login");
-            exit();
-        }
-
         $limite = 5;
         $pagina = isset($_GET['pagina']) && is_numeric($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
         $inicio = ($pagina - 1) * $limite;
@@ -26,6 +27,29 @@ class UsuarioController {
         $totalPaginas = ceil($total / $limite);
 
         require_once "view/usuario/usuario.list.php";
+    }
+
+    public function nuevo() {
+        require_once "view/usuario/usuario.new.php";
+    }
+
+    public function guardar() {
+        if (
+            empty($_POST['nombre']) || !preg_match("/^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$/", $_POST['nombre']) ||
+            empty($_POST['usuario']) || !preg_match("/^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$/", $_POST['usuario']) ||
+            empty($_POST['rol']) || !in_array($_POST['rol'], ['Administrador', 'Docente', 'Inventario']) ||
+            empty($_POST['clave'])
+        ) {
+            echo "<script>alert('Error: datos inválidos. Verifica el formulario.'); window.history.back();</script>";
+            return;
+        }
+
+        $usuario = new UsuarioDTO();
+        $usuario->usarPOST();
+        $usuario->fecha_creacion = date('Y-m-d H:i:s');
+
+        UsuarioDAO::guardar($usuario);
+        header("Location: index.php?c=Usuario");
     }
 }
 ?>
