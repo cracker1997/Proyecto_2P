@@ -5,5 +5,5 @@
   #### Cosas listas del modulo
   - [x] Crear
   - [x] Listar
-  - [ ] Editar
+  - [x] Editar
   - [x] Eliminar

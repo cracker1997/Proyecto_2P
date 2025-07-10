@@ -34,6 +34,13 @@ class UsuarioDAO {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function buscarPorId($id) {
+        $conexion = Conexion::conectar();
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function totalRegistros() {
         $conexion = Conexion::conectar();
         $stmt = $conexion->query("SELECT COUNT(*) FROM usuarios");
@@ -61,6 +68,30 @@ class UsuarioDAO {
             $usuario->rol,
             $usuario->fecha_creacion,
         ]);
+    }
+
+    public static function actualizar(UsuarioDTO $usuario) {
+        $conexion = Conexion::conectar();
+        if ($usuario->clave) {
+            $sql = "UPDATE usuarios SET nombre=?, usuario=?, clave=?, rol=? WHERE id=?";
+            $stmt = $conexion->prepare($sql);
+            return $stmt->execute([
+                $usuario->nombre,
+                $usuario->usuario,
+                sha1($usuario->clave),
+                $usuario->rol,
+                $usuario->id
+            ]);
+        } else {
+            $sql = "UPDATE usuarios SET nombre=?, usuario=?, rol=? WHERE id=?";
+            $stmt = $conexion->prepare($sql);
+            return $stmt->execute([
+                $usuario->nombre,
+                $usuario->usuario,
+                $usuario->rol,
+                $usuario->id
+            ]);
+        }
     }
 
     public static function es_admin($id) {
