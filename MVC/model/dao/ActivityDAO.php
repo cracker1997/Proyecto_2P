@@ -33,7 +33,7 @@ class ActivityDAO{
 
     public static function delete($id){
         $conexion = Conexion::conectar();
-        $sql = "DELETE * FROM activities WHERE id= ?";
+        $sql = "DELETE FROM activities WHERE id= ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(1,$id,PDO::PARAM_INT);
         $stmt->execute();
@@ -47,14 +47,14 @@ class ActivityDAO{
         hora=?,lugar=?,
         usuario_creacion=?,fecha_creacion=NOW() WHERE id=?";
         $stmt = $conexion->prepare($sql);
-        return $stmt->execute()([
-            $Activity->getId(),
+        return $stmt->execute([
             $Activity->getRazon(),
             $Activity->getDescripcion(),
             $Activity->getFecha(),
             $Activity->getHora(),
             $Activity->getLugar(),
-            $Activity->getUsuarioCreacion()
+            $Activity->getUsuarioCreacion(),
+            $Activity->getId()
         ]);
     }
 

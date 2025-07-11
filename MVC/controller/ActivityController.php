@@ -25,16 +25,16 @@ class ActivityController {
     require_once "view/activity/activity.index.php";
 }
 
-    public function delete($id_activity){
+    public function delete(){
         $this->session_check();
         $id_activity = $_GET['id'] ?? null;
         if (!$id_activity || !is_numeric($id_activity)) {
-            echo "<script>alert('ID inválido.'); window.location.href='index.php?c=Activies';</script>";
+            echo "<script>alert('ID inválido.$id_activity'); window.location.href='index.php?c=Activity&a=index';</script>";
             return;
         }
 
-        NinoDAO::eliminar($id_activity);
-        header("Location: index.php?c=Activities");
+        ActivityDAO::delete($id_activity);
+        header("Location: index.php?c=Activity&a=index");
     }
 
     public function edit() {
@@ -44,5 +44,27 @@ class ActivityController {
     
     require_once "view/activity/activity.edit.php";
 }
+    public function update(){
+        $this-> session_check();
+        $id_activity = $_POST['id'] ?? null;
+
+         if (!$id_activity || !is_numeric($id_activity)) {
+            echo "<script>alert('ID inválido.'); window.location.href='index.php?c=Activity&a=index';</script>";
+            return;
+        }
+        $Activitie = new ActivityDTO;
+        $Activitie->setId($_POST['id']);
+        $Activitie->setRazon($_POST['razon']);
+        $Activitie->setDescripcion($_POST['descripcion']);
+        $Activitie->setFecha($_POST['fecha']);
+        $Activitie->setHora($_POST['hora']);
+        $Activitie->setLugar($_POST['lugar']); // Si existe en el DTO
+        $Activitie->setUsuarioCreacion($_SESSION['usuario']['nombre']);
+        ActivityDAO::update($Activitie);
+        echo "<script>alert('Guardado');</script>";
+        header("Location: index.php?c=Activity&a=index");
+
+    }
+
 
 }
