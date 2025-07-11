@@ -10,6 +10,7 @@
             <input 
                 type="text" 
                 name="buscar" 
+                id="input-busqueda" 
                 placeholder="Buscar por nombre o apellido..." 
                 value="<?= $_GET['buscar'] ?? '' ?>"
                 style="width: 250px; padding: 8px; border: 1px solid #ccc; border-radius: 5px;"
@@ -44,7 +45,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tabla-ninos"> <!-- ← importante para JS -->
                 <?php if (empty($lista)) : ?>
                     <tr>
                         <td colspan="9" style="text-align: center;">No se encontraron registros.</td>
@@ -71,41 +72,44 @@
         </table>
 
         <!-- Paginación -->
-<?php if ($totalPaginas > 1): ?>
-<nav style="margin-top: 20px; text-align: center;">
-    <!-- Ir a primera -->
-    <a href="index.php?c=Ninos&pagina=1<?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
-    style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&laquo;</a>
+        <?php if ($totalPaginas > 1): ?>
+        <nav style="margin-top: 20px; text-align: center;">
+            <!-- Ir a primera -->
+            <a href="index.php?c=Ninos&pagina=1<?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
+            style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&laquo;</a>
 
-    <!-- Página anterior -->
-    <a href="index.php?c=Ninos&pagina=<?= max($pagina - 1, 1) ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
-    style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&lt;</a>
+            <!-- Página anterior -->
+            <a href="index.php?c=Ninos&pagina=<?= max($pagina - 1, 1) ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
+            style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&lt;</a>
 
-    <?php
-    $maxPag = 5;
-    $inicio = max(1, $pagina - floor($maxPag / 2));
-    $fin = min($inicio + $maxPag - 1, $totalPaginas);
-    if ($fin - $inicio < $maxPag - 1) {
-        $inicio = max(1, $fin - $maxPag + 1);
-    }
-    for ($i = $inicio; $i <= $fin; $i++): ?>
-        <a href="index.php?c=Ninos&pagina=<?= $i ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
-        style="margin: 0 5px; padding: 6px 12px; background-color: <?= $i == $pagina ? '#007bff' : '#eee' ?>; color: <?= $i == $pagina ? '#fff' : '#000' ?>; border-radius: 5px; text-decoration: none;">
-        <?= $i ?>
-        </a>
-    <?php endfor; ?>
+            <?php
+            $maxPag = 5;
+            $inicio = max(1, $pagina - floor($maxPag / 2));
+            $fin = min($inicio + $maxPag - 1, $totalPaginas);
+            if ($fin - $inicio < $maxPag - 1) {
+                $inicio = max(1, $fin - $maxPag + 1);
+            }
+            for ($i = $inicio; $i <= $fin; $i++): ?>
+                <a href="index.php?c=Ninos&pagina=<?= $i ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
+                style="margin: 0 5px; padding: 6px 12px; background-color: <?= $i == $pagina ? '#007bff' : '#eee' ?>; color: <?= $i == $pagina ? '#fff' : '#000' ?>; border-radius: 5px; text-decoration: none;">
+                <?= $i ?>
+                </a>
+            <?php endfor; ?>
 
-    <!-- Página siguiente -->
-    <a href="index.php?c=Ninos&pagina=<?= min($pagina + 1, $totalPaginas) ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
-    style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&gt;</a>
+            <!-- Página siguiente -->
+            <a href="index.php?c=Ninos&pagina=<?= min($pagina + 1, $totalPaginas) ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
+            style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&gt;</a>
 
-    <!-- Última -->
-    <a href="index.php?c=Ninos&pagina=<?= $totalPaginas ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
-    style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&raquo;</a>
-</nav>
-<?php endif; ?>
-        
+            <!-- Última -->
+            <a href="index.php?c=Ninos&pagina=<?= $totalPaginas ?><?= isset($_GET['buscar']) ? '&buscar=' . urlencode($_GET['buscar']) : '' ?>"
+            style="margin: 0 5px; padding: 6px 12px; background-color: #eee; border-radius: 5px; text-decoration: none;">&raquo;</a>
+        </nav>
+        <?php endif; ?>
     </div>
 </main>
+
 <?php require_once "view/templates/footer.php"; ?>
+<script src="../../assets/js/buscarNinos.js"></script>
+
+
 
