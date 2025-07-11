@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.main-activity-container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 30px 40px;
+}
+
+.activity-title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #007bff;
+    text-align: center;
+}
+
+.activity-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.activity-form input[type="text"],
+.activity-form input[type="date"],
+.activity-form input[type="time"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.activity-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.activity-form button:hover {
+    background-color: #0056b3;
+}
+
+.activity-list {
+    margin-top: 30px;
+}
+
+.activity-card {
+    background: #f0f0f0;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.activity-card h2 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.activity-card .activity-info {
+    font-size: 1rem;
+    color: #555;
+}
+
+.activity-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.activity-actions a {
+    padding: 7px 14px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.activity-actions a:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .main-activity-container {
+        padding: 15px;
+    }
+    .activity-card {
+        padding: 10px;
+    }
+}

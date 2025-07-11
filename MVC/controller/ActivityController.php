@@ -28,11 +28,10 @@ class ActivityController {
     public function delete(){
         $this->session_check();
         $id_activity = $_GET['id'] ?? null;
-        if (!$id_activity || !is_numeric($id_activity)) {
-            echo "<script>alert('ID inválido.$id_activity'); window.location.href='index.php?c=Activity&a=index';</script>";
+        if (!$id_activity || !is_numeric($id_activity) || empty($id_activity)) {
+            echo "<script>alert('ID inválido.'); window.location.href='index.php?c=Activity&a=index';</script>";
             return;
         }
-
         ActivityDAO::delete($id_activity);
         header("Location: index.php?c=Activity&a=index");
     }
@@ -48,7 +47,22 @@ class ActivityController {
         $this-> session_check();
         $id_activity = $_POST['id'] ?? null;
 
-         if (!$id_activity || !is_numeric($id_activity)) {
+
+        $required = [
+            'id' => $_POST['id'] ?? '',
+            'razon' => $_POST['razon'] ?? '',
+            'descripcion' => $_POST['descripcion'] ?? '',
+            'fecha' => $_POST['fecha'] ?? '',
+            'hora' => $_POST['hora'] ?? '',
+            'lugar' => $_POST['lugar'] ?? ''
+        ];
+        foreach ($required as $key => $value) {
+            if (empty(trim($value))) {
+                echo "<script>alert('Campo \"$key\" vacío o inválido.'); window.location.href='index.php?c=Activity&a=edit&id={$id_activity}';</script>";
+                return;
+            }
+        }
+        if (!$id_activity || !is_numeric($id_activity)) {
             echo "<script>alert('ID inválido.'); window.location.href='index.php?c=Activity&a=index';</script>";
             return;
         }
@@ -66,6 +80,19 @@ class ActivityController {
     }
     public function save() {
         $this-> session_check();
+        $required = [
+            'razon' => $_POST['razon'] ?? '',
+            'descripcion' => $_POST['descripcion'] ?? '',
+            'fecha' => $_POST['fecha'] ?? '',
+            'hora' => $_POST['hora'] ?? '',
+            'lugar' => $_POST['lugar'] ?? ''
+        ];
+        foreach ($required as $key => $value) {
+            if (empty(trim($value))) {
+                echo "<script>alert('Campo \"$key\" vacío o inválido.'); window.location.href='index.php?c=Activity&a=new';</script>";
+                return;
+            }
+        }
         $Activitie = new ActivityDTO;
         $Activitie->setRazon($_POST['razon']);
         $Activitie->setDescripcion($_POST['descripcion']);
