@@ -16,4 +16,4 @@
   - [x] Listar
   - [x] Editar
   - [x] Eliminar
-  - [ ] Diseño
+
