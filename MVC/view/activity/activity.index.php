@@ -8,7 +8,7 @@
             <input type="date" name="fecha" value="<?= $_GET['fecha'] ?? date('Y-m-d') ?>">
             <button type="submit">Buscar</button>
             <?php if ($rol === 'Administrador'): ?>
-                <a href="ola">Nueva Actividad</a>
+                <a href="index.php?c=Activity&a=new">Nueva Actividad</a>
             <?php endif; ?>
             
             <?php  for($i=0;$i<count($activities_list);$i++): ?>

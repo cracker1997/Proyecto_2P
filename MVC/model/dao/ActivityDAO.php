@@ -16,18 +16,19 @@ class ActivityDAO{
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+   
     public static function guardar(ActivityDTO $Activity){
         $conexion = Conexion::conectar();
-        $sql = "INSERT INTO activities (id, razon, descripcion, fecha, hora, lugar, usuario_creacion)
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO activities (razon, descripcion, fecha, hora, lugar, usuario_creacion)
+        VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
-        return $stmt->execute()([
-            $Activity->getId(),
+        return $stmt->execute([
             $Activity->getRazon(),
             $Activity->getDescripcion(),
             $Activity->getFecha(),
             $Activity->getHora(),
-            $Activity->getLugar()
+            $Activity->getLugar(),
+            $Activity->getUsuarioCreacion()
         ]); 
     }
 

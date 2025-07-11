@@ -58,13 +58,30 @@ class ActivityController {
         $Activitie->setDescripcion($_POST['descripcion']);
         $Activitie->setFecha($_POST['fecha']);
         $Activitie->setHora($_POST['hora']);
-        $Activitie->setLugar($_POST['lugar']); // Si existe en el DTO
+        $Activitie->setLugar($_POST['lugar']); 
         $Activitie->setUsuarioCreacion($_SESSION['usuario']['nombre']);
         ActivityDAO::update($Activitie);
-        echo "<script>alert('Guardado');</script>";
         header("Location: index.php?c=Activity&a=index");
 
     }
+    public function save() {
+        $this-> session_check();
+        $Activitie = new ActivityDTO;
+        $Activitie->setRazon($_POST['razon']);
+        $Activitie->setDescripcion($_POST['descripcion']);
+        $Activitie->setFecha($_POST['fecha']);
+        $Activitie->setHora($_POST['hora']);
+        $Activitie->setLugar($_POST['lugar']); 
+        $Activitie->setUsuarioCreacion($_SESSION['usuario']['nombre']);
+        ActivityDAO::guardar($Activitie);
+        header("Location: index.php?c=Activity&a=index");
+    }
 
+    public function new() {
+        $this-> session_check();
+        
+
+    require_once "view/activity/activity.new.php";
+}
 
 }
