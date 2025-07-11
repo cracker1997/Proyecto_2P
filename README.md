@@ -12,7 +12,8 @@
   #### Encargado
   - Cabanilla David
   #### Cosas listas del modulo
-  - [ ] Crear
+  - [x] Crear
   - [x] Listar
   - [x] Editar
   - [x] Eliminar
+  - [ ] Diseño
