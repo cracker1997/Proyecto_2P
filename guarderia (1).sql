@@ -57,6 +57,22 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Estructura de tabla para la tabla `activities`
+--
+
+CREATE TABLE `activities` (
+  `id` int(11) NOT NULL,
+  `razon` varchar(100) NOT NULL,
+  `descripcion` text NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `lugar` varchar(100) NOT NULL,
+  `usuario_creacion` varchar(50) DEFAULT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+--
 -- Volcado de datos para la tabla `usuarios`
 --
 
@@ -64,6 +80,16 @@ INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `clave`, `rol`, `fecha_creaci
 (1, 'Ronny Ordoñez', 'ronny', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Administrador', '2025-07-06 22:25:40'),
 (2, 'Ana Pérez', 'ana', '6495bc8d1f3bfb9a4ea88a0b4d8bb5eb5b50f9db', 'Docente', '2025-07-06 22:25:40'),
 (3, 'Carlos Mejía', 'carlos', '319d3431d8fb5a905d06b171462e33d1ab6e2bab', 'Inventario', '2025-07-06 22:25:40');
+
+--
+-- Volcado de datos para la tabla `activities`
+--
+
+INSERT INTO `activities` (`id`, `razon`, `descripcion`, `fecha`, `hora`, `lugar`, `usuario_creacion`)
+VALUES
+(1, 'Jornada de Lectura', 'Actividad grupal donde los niños escucharán cuentos narrados por los docentes.', '2025-07-08', '09:00:00', 'Sala de Juegos', 'cparedes'),
+(2, 'Taller de Manualidades', 'Los niños realizarán figuras con plastilina y papel reciclado para estimular su creatividad.', '2025-07-09', '10:30:00', 'Aula Creativa', 'mlopez'),
+(3, 'Fiesta de Disfraces', 'Evento especial donde los niños vendrán disfrazados y participarán en juegos y bailes.', '2025-07-10', '11:00:00', 'Patio Principal', 'rvera');
 
 --
 -- Índices para tablas volcadas
@@ -83,6 +109,12 @@ ALTER TABLE `usuarios`
   ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
+-- Indices de la tabla `activities`
+--
+ALTER TABLE `activities`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -90,6 +122,12 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ninos`
 --
 ALTER TABLE `ninos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `activities`
+--
+ALTER TABLE `activities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
