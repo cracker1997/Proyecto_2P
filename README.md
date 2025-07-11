@@ -7,3 +7,12 @@
   - [x] Listar
   - [x] Editar
   - [x] Eliminar
+        
+- ## Actividades
+  #### Encargado
+  - Cabanilla David
+  #### Cosas listas del modulo
+  - [ ] Crear
+  - [x] Listar
+  - [x] Editar
+  - [x] Eliminar
