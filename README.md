@@ -17,3 +17,11 @@
   - [x] Editar
   - [x] Eliminar
 
+- ## Personal
+  #### Encargado
+  - Carrasco Claudio
+  #### Cosas listas del modulo
+  - [x] Crear
+  - [x] Listar
+  - [x] Editar
+  - [x] Eliminar
