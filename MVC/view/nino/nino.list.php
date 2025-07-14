@@ -111,5 +111,3 @@
 <?php require_once "view/templates/footer.php"; ?>
 <script src="../../assets/js/buscarNinos.js"></script>
 
-
-
