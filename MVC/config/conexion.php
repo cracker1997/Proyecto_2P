@@ -1,5 +1,5 @@
-<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
+//autor: Ordoñez Arreaga Ronny
 require_once "config.php";
 
 class Conexion {

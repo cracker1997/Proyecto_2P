@@ -1,5 +1,5 @@
-<!-- autor: Cusme Fienco Axel -->
 <?php
+//autor: Cusme Fienco Axel
 class InventarioDTO {
     public $id;
     public $nombre;

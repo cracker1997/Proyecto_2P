@@ -1,5 +1,5 @@
-<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
+//autor: Ordoñez Arreaga Ronny
 session_start();
 require_once "model/dao/NinoDAO.php";
 require_once "model/dto/NinoDTO.php";

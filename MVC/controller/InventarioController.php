@@ -1,5 +1,5 @@
-<!-- autor: Cusme Fienco Axel -->
 <?php
+//autor: Cusme Fienco Axel
 require_once "model/dto/InventarioDTO.php";
 require_once "model/dao/InventarioDAO.php";
 

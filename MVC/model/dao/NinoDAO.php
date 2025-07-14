@@ -1,6 +1,5 @@
-<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
-
+//autor: Ordoñez Arreaga Ronny
 require_once "config/conexion.php";
 require_once "model/dto/NinoDTO.php";
 

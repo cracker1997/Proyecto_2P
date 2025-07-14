@@ -1,6 +1,5 @@
-<!-- autor: Ordoñez Arreaga Ronny -->
 <?php
-
+//autor: Ordoñez Arreaga Ronny
 class NinoDTO {
     private $id;
     private $nombre;
