@@ -1,3 +1,4 @@
+<!-- autor: Cabanilla Piza David-->
 <?php require_once "view/templates/navbar.php"; ?>
 <link rel="stylesheet" href="view/activity/Activity.css">
 
