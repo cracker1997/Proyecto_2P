@@ -1,4 +1,14 @@
 # Modulos
+ ## Niñps
+  #### Encargado
+  - Ordoñez Ronny
+  #### Cosas listas del modulo
+  - [x] Crear
+  - [x] Listar
+  - [x] Editar
+  - [x] Eliminar
+  
+# Modulos
 - ## Usuarios
   #### Encargado
   - Milton Lomas.
@@ -20,6 +30,16 @@
 - ## Personal
   #### Encargado
   - Carrasco Claudio
+  #### Cosas listas del modulo
+  - [x] Crear
+  - [x] Listar
+  - [x] Editar
+  - [x] Eliminar
+
+# Modulos
+ ## Inventario
+  #### Encargado
+  - Cusme Axel
   #### Cosas listas del modulo
   - [x] Crear
   - [x] Listar
