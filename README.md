@@ -16,4 +16,12 @@
   - [x] Listar
   - [x] Editar
   - [x] Eliminar
-  - [ ] Diseño
+
+- ## Personal
+  #### Encargado
+  - Carrasco Claudio
+  #### Cosas listas del modulo
+  - [x] Crear
+  - [x] Listar
+  - [x] Editar
+  - [x] Eliminar
