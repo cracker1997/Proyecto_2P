@@ -1,5 +1,5 @@
 <!-- autor: Cabanilla Piza David-->
- <?php
+<?php
 session_start();
 require_once "model/dao/ActivityDAO.php";
 require_once "model/dto/ActivityDTO.php";

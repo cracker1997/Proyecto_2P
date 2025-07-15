@@ -27,7 +27,7 @@ $rol = $_SESSION['usuario']['rol'];
             <li><a href="index.php?c=Activity&a=index">Actividades</a></li>
         <?php elseif ($rol === 'Docente') : ?>
             <li><a href="index.php?c=Ninos&a=index">Niños</a></li>
-            <li><a href="index.php?c=Actividades&a=index">Actividades</a></li>
+            <li><a href="index.php?c=Activity&a=index">Actividades</a></li>
         <?php elseif ($rol === 'Inventario') : ?>
             <li><a href="index.php?c=Inventario&a=index">Inventario</a></li>
         <?php endif; ?>
