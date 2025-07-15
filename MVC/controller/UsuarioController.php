@@ -1,5 +1,6 @@
-<!-- autor: Milton Leonardo Lomas Cepeda -->
 <?php
+//autor: Milton Leonardo Lomas Cepeda
+
 session_start();
 require_once "model/dao/UsuarioDAO.php";
 require_once "model/dto/UsuarioDTO.php";

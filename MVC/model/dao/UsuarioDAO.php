@@ -1,5 +1,6 @@
-<!-- autor: Lomas Cepeda Milton -->
 <?php
+//autor: Milton Leoanrdo Lomas Cepeda
+
 require_once "config/conexion.php";
 
 class UsuarioDAO {
