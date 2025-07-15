@@ -1,5 +1,5 @@
-<!-- autor: Milton Leonardo Lomas Cepeda -->
 <?php
+//autor: Milton Leonardo Lomas Cepeda
 
 class UsuarioDTO {
     // No voy a definir un moton de getters y setters si va a hacer lo mismo

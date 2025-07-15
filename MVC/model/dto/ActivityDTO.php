@@ -1,7 +1,7 @@
-<!-- autor: Cabanilla Piza David-->
+
 
 <?php
-
+//autor: Cabanilla David Eduardo
 class ActivityDTO {
     private $id;
     private $razon;

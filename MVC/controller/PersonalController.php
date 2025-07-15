@@ -1,4 +1,5 @@
 <?php
+//autor: Carrasco Chimbiligua Claudio Valentino
 session_start();
 require_once "model/dao/PersonalDAO.php";
 require_once "model/dto/PersonalDTO.php";

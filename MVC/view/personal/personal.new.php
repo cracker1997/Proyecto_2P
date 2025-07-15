@@ -1,3 +1,4 @@
+<!-- autor: Carrasco Chimbiligua Claudio Valentino -->
 <?php require_once "view/templates/navbar.php"; ?>
 <main class="container">
     <h2>Registrar Nuevo Personal</h2>

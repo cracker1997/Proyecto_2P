@@ -1,5 +1,5 @@
 <?php
-
+//autor: Carrasco Chimbiligua Claudio Valentino
 class PersonalDTO {
     private $id;
     private $nombre;
