@@ -1,5 +1,5 @@
 <?php
-
+//autor: Carrasco Chimbiligua Claudio Valentino
 require_once "config/conexion.php";
 require_once "model/dto/PersonalDTO.php"; // Assuming you have a PersonalDTO.php
 
