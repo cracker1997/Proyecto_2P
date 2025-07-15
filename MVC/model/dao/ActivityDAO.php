@@ -1,6 +1,6 @@
-<!-- autor: Cabanilla Piza David-->
- <?php
 
+ <?php
+//autor: Cabanilla David Eduardo
 use function PHPSTORM_META\map;
 
 require_once "config/conexion.php";

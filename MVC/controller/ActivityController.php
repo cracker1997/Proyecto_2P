@@ -1,5 +1,6 @@
-<!-- autor: Cabanilla Piza David-->
+
  <?php
+ //autor: Cabanilla David Eduardo
 session_start();
 require_once "model/dao/ActivityDAO.php";
 require_once "model/dto/ActivityDTO.php";
