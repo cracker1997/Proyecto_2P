@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-07-2025 a las 06:48:49
+-- Tiempo de generación: 16-07-2025 a las 02:07:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,7 +43,8 @@ CREATE TABLE `activities` (
 --
 
 INSERT INTO `activities` (`id`, `razon`, `descripcion`, `fecha`, `hora`, `lugar`, `usuario_creacion`, `fecha_creacion`) VALUES
-(1, 'Deporte', 'Juegos infantiles al aire libre', '2025-07-14', '06:36:00', 'Patio guarderia 1', 'Karla Abad', '2025-07-14 04:36:56');
+(1, 'Deporte', 'Juegos infantiles al aire libre', '2025-07-14', '06:36:00', 'Patio guarderia 1', 'Karla Abad', '2025-07-14 04:36:56'),
+(4, 'Deporte', 'Juegos infantiles al aire libre', '2025-07-17', '04:24:00', 'Patio guarderia', 'Karla Abad', '2025-07-15 02:24:11');
 
 -- --------------------------------------------------------
 
@@ -59,6 +60,16 @@ CREATE TABLE `inventario` (
   `estado` enum('Disponible','No Disponible') DEFAULT 'Disponible',
   `fecha_registro` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`id`, `nombre`, `descripcion`, `cantidad`, `estado`, `fecha_registro`) VALUES
+(6, 'Pizarrones blancos', 'en uso dentro de los cursos de niños', 15, 'No Disponible', '2025-07-14 08:14:54'),
+(7, 'Pizarrones Verdes', 'En uso de los cursos de los niños', 15, 'No Disponible', '2025-07-14 08:15:41'),
+(8, 'Pizarrones blancos', 'pizarrones blancos usados muy gastados ', 4, 'No Disponible', '2025-07-14 20:06:28'),
+(9, 'Pizarrones blancos', 'Pizarrones blancos nuevos listo para su uso', 10, 'Disponible', '2025-07-14 20:07:15');
 
 -- --------------------------------------------------------
 
@@ -116,7 +127,8 @@ CREATE TABLE `personal` (
 --
 
 INSERT INTO `personal` (`id`, `nombre`, `apellido`, `cargo`, `fecha_nacimiento`, `direccion`, `telefono`, `email`, `fecha_registro`, `usuario_creacion`, `fecha_actualizacion`, `usuario_actualizacion`) VALUES
-(1, 'Javier', 'Garces', 'Limpieza', '2025-07-25', 'los alamos', '099765533', 'martingonza@gmail.com', '2025-07-14 04:24:52', 'Karla Abad', '2025-07-14 04:24:59', 'Karla Abad');
+(1, 'Javier', 'Garces', 'Limpieza', '2025-07-25', 'los alamos', '099765533', 'martingonza@gmail.com', '2025-07-14 04:24:52', 'Karla Abad', '2025-07-14 04:24:59', 'Karla Abad'),
+(2, 'Juan ', 'Caiche', 'Auxiliar ', '1997-06-18', 'los alamos', '0954678976', 'jua@gmail.com', '2025-07-15 02:03:54', 'Karla Abad', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -138,7 +150,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `clave`, `rol`, `fecha_creacion`) VALUES
-(2, 'Karla Abad', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrador', '2025-07-14 11:23:34');
+(2, 'Karla Abad', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrador', '2025-07-14 11:23:34'),
+(3, 'Milton Lomas', 'MiltonL', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Docente', '2025-07-15 09:05:24'),
+(4, 'Axel Cusme', 'AxelC', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Inventario', '2025-07-15 09:07:09');
 
 --
 -- Índices para tablas volcadas
@@ -184,31 +198,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `ninos`
 --
 ALTER TABLE `ninos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
